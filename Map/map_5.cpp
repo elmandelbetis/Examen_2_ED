@@ -21,24 +21,30 @@ void MostrarInventario(map<string, int> &mapa){
 
 void AgregarProducto(map<string,int> &mapa){
     string producto;
-    int cantidad_añadida;
+    int cantidad_aniadida;
 
     //Añadir producto a mapa, incrementar nº productos
     //Comprobar que si hay 0, se use at() para añadir 1
     //Y que si no es 0 sino otro, se añada igual
     
-    cout << "Introduzca producto a añadir: (pulse '0' para terminar)\n";
+    cout << "Introduzca producto a añadir: ";
     do{
         cin >> producto;
     }while(producto == "0");
 
-    cout << "Introduzca la cantidad de producto a añadir al inventario: ";
-    cin >> cantidad_añadida;
+    do{
+        cout << "Introduzca la cantidad de producto a añadir al inventario: ";
+        cin >> cantidad_aniadida;
+
+        if(cantidad_aniadida <= 0)
+            cout << "La cantidad a añadir debe ser un número entero positivo.\n";
+
+    }while(cantidad_aniadida <= 0);
     
     if(mapa.find(producto) != mapa.end())
-        mapa[producto] += cantidad_añadida;
+        mapa[producto] += cantidad_aniadida;
     else   
-        mapa[producto] = cantidad_añadida;
+        mapa[producto] = cantidad_aniadida;
 
     MostrarInventario(mapa);
 
@@ -48,7 +54,7 @@ void VenderProducto(map<string,int> &mapa){
     string producto;
     int cantidad_vendida;
 
-    cout << "Introduzca producto a vender: (pulse '0' para terminar)";
+    cout << "Introduzca producto a vender: ";
     do{
         cin >> producto;
         if (mapa.find(producto) == mapa.end())
@@ -56,8 +62,14 @@ void VenderProducto(map<string,int> &mapa){
 
     }while(producto == "0" || mapa.find(producto) == mapa.end());
 
-    cout << "Introduzca la cantidad de producto a vender: ";
-    cin >> cantidad_vendida;
+    do{
+        cout << "Introduzca la cantidad de producto a vender: ";
+        cin >> cantidad_vendida;
+
+        if(cantidad_vendida <= 0)
+            cout << "La cantidad a vender debe ser un número entero positivo.\n";
+
+    }while(cantidad_vendida <= 0);
     
     mapa[producto] -= cantidad_vendida;
     int it = mapa[producto];
