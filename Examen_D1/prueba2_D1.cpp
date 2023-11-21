@@ -28,7 +28,7 @@ int mas_conectado(const list< set<int> > &LS) {
         for (const auto otro_conjunto : LS){
             if (conjunto != otro_conjunto){
                 set<int> interseccion;
-                std::set_intersection(conjunto.begin(), conjunto.end(),
+                set_intersection(conjunto.begin(), conjunto.end(),
                         otro_conjunto.begin(), otro_conjunto.end(),
                         inserter(interseccion, interseccion.begin()));
                 
